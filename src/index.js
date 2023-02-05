@@ -1,19 +1,29 @@
-import _ from 'lodash';
 import './style.css';
 import Icon from './tunic.png';
 
-function component() {
+async function getComponent() {
     const element = document.createElement('div');
+    const { default: _ } = await import('lodash');
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.innerHTML = _.join(['Hewwo', 'webpack'], ' ');
     element.classList.add('hello');
 
-    // Add the image to our existing div.
     const myIcon = new Image();
     myIcon.src = Icon;
     element.appendChild(myIcon);
 
+    const button = document.createElement('button');
+    button.innerHTML = 'Click me and look at the console!';
+    element.appendChild(button);
+    button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+        const print = module.default;
+
+        print();
+    });
+
     return element;
 }
 
-document.body.appendChild(component());
+getComponent().then(component => {
+    document.body.appendChild(component);
+})

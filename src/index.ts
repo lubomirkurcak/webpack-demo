@@ -3,9 +3,9 @@ import Icon from './tunic.png';
 
 async function getComponent() {
     const element = document.createElement('div');
-    const { default: _ } = await import('lodash');
+    const { join } = await import('lodash-es');
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.innerHTML = join(['Hello', 'webpack'], ' ');
     element.classList.add('hello');
 
     const myIcon = new Image();

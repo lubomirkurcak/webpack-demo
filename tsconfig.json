@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "es2020",
+        "target": "es6",
+        "allowJs": false,
+        "strict": true,
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true
+    }
+}

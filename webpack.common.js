@@ -3,13 +3,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/index.js',
+        index: './src/index.ts',
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Cringe Management',
         }),
     ],
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
@@ -17,6 +20,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
